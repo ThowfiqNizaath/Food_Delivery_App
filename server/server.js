@@ -24,7 +24,7 @@ app.use('/api/order', orderRouter)
 connectDatabase()
 
 
-app.listen(process.env.PORT,() => {
+app.listen(process.env.PORT || 3000,() => {
     console.log(`Server listening on ${process.env.PORT}`)
 })
 
