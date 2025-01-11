@@ -1,1 +1,21 @@
+# .env
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Environment variables
 .env
+
+# Build outputs
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
