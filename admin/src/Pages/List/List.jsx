@@ -59,7 +59,7 @@ const List = () => {
                 <img src={`${import.meta.env.VITE_URL}/image/${item.image}`} alt="" />
                 <p>{item.name}</p>
                 <p>{item.category}</p>
-                <p>{item.price}</p>
+                <p>${item.price}</p>
                 <p className="list-remove" onClick={() => removeData(item._id)}>Remove</p>
               </div>
             )

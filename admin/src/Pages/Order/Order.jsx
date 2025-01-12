@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './Order.css'
 import axios from 'axios'
 import { assets } from '../../assets/assets'
+import {useSnackbar} from "notistack"
 const Order = () => {
   const [data, setData] = useState([])
-
+  const {enqueueSnackbar} = useSnackbar()
   useEffect(() => {
      fetchOrders()
   },[])
@@ -25,9 +26,11 @@ const Order = () => {
        const response = await axios.post(import.meta.env.VITE_URL+'/api/order/status',{orderId, status: event.target.value})
        if(response.data.success){
         fetchOrders()
+        enqueueSnackbar(response.data.message, {variant: "success"})
        }
     }catch(err){
       console.log(err)
+      enqueueSnackbar(response.data.message, { variant: "error" });
     }
   }
 

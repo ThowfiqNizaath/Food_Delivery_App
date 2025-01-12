@@ -13,6 +13,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
 .sidebar-option{
     display: flex;
     gap: 12px;
@@ -26,11 +27,33 @@
 .sidebar-option.active{
     border-color: tomato;
     background-color: #fff0ed;
+    border:1px dashed tomato;
 }
 @media (max-width: 650px){
-    .sidebar-option{
-        justify-content: center;
+    .sidebar{
+        width: 100%;
+        border: 1.4px solid #a9a9a9;
+        font-size: max(1vw, 12px);
+        min-height: 0;
+        border-top: none;
+        margin-top: 20px;
     }
+    .sidebar-options{
+        padding:0px;
+        /* border: 2px solid red; */
+        padding-left: 0%;
+        display: flex;
+        justify-content:space-around;
+        gap:20px;
+
+        flex-direction: row;
+    }
+    .sidebar-option{
+        border: none;
+    }
+}
+
+@media (max-width: 350px){
     .sidebar-option p{
         display: none;
     }

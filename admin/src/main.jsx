@@ -6,7 +6,12 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {SnackbarProvider} from 'notistack';
 
 createRoot(document.getElementById("root")).render(
-  <SnackbarProvider maxSnack={2}>
+  <SnackbarProvider maxSnack={2} 
+  autoHideDuration={2000}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'right'
+  }}>
     <Router>
       <App />
     </Router>
