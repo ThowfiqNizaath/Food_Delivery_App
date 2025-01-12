@@ -1,6 +1,6 @@
 import path from "path"
 import { foodModel } from "../models/foodModel.js"
-import fs from "fs"
+import fs from "fs/promises"
 
 const addFood = async(req, res) => {
     let image_filename = `${req.file.filename}`
@@ -45,5 +45,33 @@ const removeFood = async(req, res) => {
     }
 }
 
-export {addFood, allFoodItems, removeFood}
+const foodOrderImages = async (req, res) => {
+  const folderPath = "./uploads" // Accept folder path as query parameter
+  if (!folderPath) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Folder path is required." });
+  }
+
+  try {
+    // Resolve the absolute path
+    const absolutePath = path.resolve(folderPath);
+
+    // Get all files and directories in the folder
+    const files = await fs.readdir(absolutePath);
+
+    return res.json({ success: true, data:files });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: "Error reading the folder.",
+        error: error.message,
+      });
+  }
+};
+
+export {addFood, allFoodItems, removeFood, foodOrderImages}
 
