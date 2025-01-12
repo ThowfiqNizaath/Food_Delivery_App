@@ -1,8 +1,13 @@
-.verify{
-    min-height: 60vh;
-    display: grid;
+.fallback{
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
-.verify .spinner{
+
+.fallback .spinner{
     width: 80px;
     height: 80px;
     border: 5px solid #bdbdbd;
@@ -11,4 +16,3 @@
     border-radius: 50%;
     animation: rotate 1s infinite;
 }
-

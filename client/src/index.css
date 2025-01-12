@@ -22,6 +22,12 @@ a{
   color: inherit;
 }
 
+@media (max-width: 450px){
+  .app{
+    width:90%;
+  }
+}
+
 @keyframes fadeIn{
   0%{
     opacity: 0;
@@ -29,4 +35,10 @@ a{
   100%{
     opacity: 100%;
   }
+}
+
+@keyframes rotate{
+    100%{
+        transform: rotate(360deg);
+    }
 }

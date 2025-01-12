@@ -3,6 +3,7 @@ import { assets } from '../../assets/frontend_assets/assets'
 import './LoginPopup.css'
 import axios from 'axios'
 import { StoreContext } from '../../Context/StoreProvider'
+import { useSnackbar } from 'notistack'
 
 const LoginPopup = ({setShowLogin}) => {
     const [currState, setCurrState] = useState("Login")
@@ -12,6 +13,8 @@ const LoginPopup = ({setShowLogin}) => {
         email: '',
         password: ''
     })
+    const {enqueueSnackbar} = useSnackbar()
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -39,8 +42,11 @@ const LoginPopup = ({setShowLogin}) => {
                   email: "",
                   password: "",
                 });
+                enqueueSnackbar(response.data.message, {
+                  variant: "success"
+                })
             }else{
-                alert(response.data.message)
+                enqueueSnackbar(response.data.message, {variant: "error"})
             }
         }catch(err){
             console.log(err)

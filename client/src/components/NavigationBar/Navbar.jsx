@@ -3,15 +3,21 @@ import { assets } from "../../assets/frontend_assets/assets";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Context/StoreProvider";
+import { useSnackbar } from "notistack";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate()
+  const {enqueueSnackbar} = useSnackbar()
+
   const logout = () => {
     localStorage.removeItem("token");
     setToken('')
     navigate('/')
+    enqueueSnackbar("Logout Successfully", {
+      variant: 'success',
+    })
   }
   return (
     <div className="navbar">

@@ -21,7 +21,7 @@ const loginUser = async(req, res) => {
             return res.json({success: false, message: "Password mismatch"})
         }
         const token = createToken(user._id)
-        return res.json({success: true, token: token, data: user})
+        return res.json({success: true,message:"Successfully Logged In" ,token: token, data: user})
     }catch(err){
         console.log(err)
         res.json({success: false, message: err})
@@ -34,7 +34,7 @@ const signupUser = async(req, res) => {
     try{
         const exist = await userModel.findOne({email})
         if(exist){
-            return res.json({success: true, message: "User already exists"})
+            return res.json({success: false, message: "User already exists"})
         }
         //validate
         if(!validate.isEmail(email)){
@@ -53,7 +53,7 @@ const signupUser = async(req, res) => {
         })
         const user = await newUser.save()
         const token = createToken(user._id)
-        return res.json({success: true, token: token})
+        return res.json({success: true,message:"You Signed Up Successfully", token: token})
     }catch(err){
         console.log(err);
         res.json({success: false, message: err})

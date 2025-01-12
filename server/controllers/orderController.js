@@ -57,7 +57,7 @@ const verifyOrder = async(req, res) => {
         const {orderId, success} = req.body;
         if(success == "true"){
             await orderModel.findByIdAndUpdate(orderId,{payment: true})
-            res.json({success: true, message: "Paid"})
+            res.json({success: true, message: "Paid Successfully"})
         }else{
             await orderModel.findByIdAndDelete(orderId)
             res.json({success: false, message: "Not Paid"})
