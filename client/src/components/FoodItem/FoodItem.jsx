@@ -11,8 +11,8 @@ const FoodItem = ({id, name, price, description, image}) => {
       <div className="food-item-img-container">
         <img
           className="food-item-image"
-          src={`${import.meta.env.VITE_SERVER_URL}/image/${image}`}
-          alt=""
+          src={`${import.meta.env.VITE_SERVER_URL}/api/food/image/${image}`}
+          alt={image}
         />
         {!cartItem[id] ? (
           <img

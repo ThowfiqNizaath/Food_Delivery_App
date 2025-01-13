@@ -73,5 +73,23 @@ const foodOrderImages = async (req, res) => {
   }
 };
 
-export {addFood, allFoodItems, removeFood, foodOrderImages}
+const serveImageFile = async(req, res) => {
+  try{
+    const __dirname =  path.resolve();
+    const imageName = req.params.imageName;
+    const imagePath = path.join(__dirname,'uploads',imageName);
+
+    res.sendFile(imagePath, err => {
+        if(err){
+          console.log(err)
+          res.status(404).send({message: "Image not found"})
+        }
+    })
+  }catch(err){
+    console.log(err)
+    res.json({success: false, message: "Error From ServeImageFile"})
+  }
+}
+
+export {addFood, allFoodItems, removeFood, foodOrderImages, serveImageFile}
 

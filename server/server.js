@@ -12,15 +12,16 @@ dotenv.config();
 //app config
 const app = express();
 const __dirname = path.resolve();
+app.use(express.static("uploads"));
 
 //middleware
 app.use(express.json())
 app.use(cros())
 app.use('/api/food',foodRouter)
-app.use('/image',express.static(path.join(__dirname,'uploads')))
 app.use('/api/user',userRouter)
 app.use('/api/cart',cartRouter)
 app.use('/api/order', orderRouter)
+
 
 //connect Database
 connectDatabase()

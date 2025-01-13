@@ -56,7 +56,7 @@ const List = () => {
            data.map((item, index) => {
             return(
               <div key={index} className="list-table-format">
-                <img src={`${import.meta.env.VITE_URL}/image/${item.image}`} alt="" />
+                <img src={`${import.meta.env.VITE_URL}/api/food/image/${item.image}`} alt="" />
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>${item.price}</p>
