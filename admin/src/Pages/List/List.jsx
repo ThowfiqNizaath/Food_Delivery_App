@@ -53,7 +53,7 @@ const List = () => {
           <b>Action</b>
         </div>
         {
-           data.map((item, index) => {
+           data.length === 0 ? <h1 className="list-nofood"> No Food Available! Please Add Foods. </h1> : data.map((item, index) => {
             return(
               <div key={index} className="list-table-format">
                 <img src={`${import.meta.env.VITE_URL}/api/food/image/${item.image}`} alt="" />

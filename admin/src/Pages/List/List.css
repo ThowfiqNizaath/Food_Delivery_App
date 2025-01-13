@@ -18,6 +18,11 @@
     color: white;
     cursor: pointer;
 }
+.list-nofood{
+    margin-top: 50px;
+    font-weight: 500;
+}
+
 @media (max-width: 650px) {
     .list{
         width: 90%;
