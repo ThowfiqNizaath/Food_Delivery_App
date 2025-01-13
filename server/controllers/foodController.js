@@ -91,5 +91,16 @@ const serveImageFile = async(req, res) => {
   }
 }
 
-export {addFood, allFoodItems, removeFood, foodOrderImages, serveImageFile}
+const clearFoodList = async(req, res) => {
+  try{
+    const food_list = await foodModel.find({})
+    const food_Deleted = await foodModel.deleteMany({},{new: true})
+    res.json({success: true, data: food_list, food_Deleted})
+  }catch(err){
+    console.log(err)
+    res.json({success: false, message: "Error From ClearFoodList"})
+  }
+}
+
+export {addFood, allFoodItems, removeFood, foodOrderImages, serveImageFile, clearFoodList}
 
