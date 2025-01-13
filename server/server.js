@@ -6,16 +6,18 @@ import { foodRouter } from './routes/FoodRouter.js';
 import userRouter from './routes/userRouter.js';
 import cartRouter from './routes/CartRouter.js';
 import orderRouter from './routes/orderRouter.js';
+import path from "path"
  
 dotenv.config();
 //app config
 const app = express();
+const __dirname = path.resolve();
 
 //middleware
 app.use(express.json())
 app.use(cros())
 app.use('/api/food',foodRouter)
-app.use('/image',express.static("uploads"))
+app.use('/image',express.static(path.join(__dirname,'uploads')))
 app.use('/api/user',userRouter)
 app.use('/api/cart',cartRouter)
 app.use('/api/order', orderRouter)
