@@ -35,8 +35,9 @@ const allFoodItems = async(req, res) => {
 
 const removeFood = async(req, res) => {
     try{
+       const __dirname = path.resolve()
        const food = await foodModel.findById(req.body.id)
-       await fs.promises.unlink(path.join('uploads',food.image))
+       await fs.unlink(path.join(__dirname,'uploads',food.image))
        await foodModel.findByIdAndDelete(food._id);
        res.json({success: true, message: 'Food Removed successfully'})
     }catch(err){

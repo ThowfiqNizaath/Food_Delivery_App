@@ -11,7 +11,7 @@ const FoodDisplay = ({category}) => {
       {food_list.length === 0 && (
         <h2 className="food_list_meassage">
           {" "}
-          Server is under process. Please try agani later!{" "}
+          Server is under process. Please try again later!{" "}
         </h2>
       )}
       <div className="food-display-list">
@@ -32,7 +32,6 @@ const FoodDisplay = ({category}) => {
           })}
       </div>
     </div>
-  );
+  )
 }
-
 export default FoodDisplay
