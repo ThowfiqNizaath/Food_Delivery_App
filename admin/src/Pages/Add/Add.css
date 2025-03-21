@@ -5,6 +5,9 @@
   color: #6d6d6d;
   font-size: 16px;
 }
+#addLabel{
+  cursor: pointer;
+}
 .add form {
   gap: 20px;
 }
@@ -35,6 +38,7 @@
   background-color: tomato;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 @media (max-width: 650px) {

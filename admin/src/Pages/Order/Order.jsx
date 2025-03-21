@@ -44,7 +44,7 @@ const Order = () => {
             No Orders Available!{" "}
           </h1>
         ) : (
-          data.map((order, index) => (
+          data.reverse().map((order, index) => (
             <div key={index} className="order-item">
               <img src={assets.parcel_icon} alt="" />
               <div>

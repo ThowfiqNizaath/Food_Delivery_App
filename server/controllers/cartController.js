@@ -1,3 +1,4 @@
+import { foodModel } from "../models/foodModel.js";
 import { userModel } from "../models/userModel.js";
 
 //add Cart
@@ -38,8 +39,29 @@ const removeCart = async(req, res) => {
 const getCart = async(req, res) => {
     try{
         const userData = await userModel.findById(req.body.userId)
+        const foodList = await foodModel.find({})
         const cartData = await userData.cartData;
-        res.json({success: true, message: "Successfully fetched Cart", data: cartData});
+        // console.log(userData, "userData")
+        // console.log(foodList, "foodList")
+        // console.log(cartData, "cartData")
+        // const foodIdSet = [...new Set(foodList.map(food => food._id.toString()))]
+        // const foodIdSet = new Set(foodList.map(food => food._id.toString()))
+        
+        // const allItemsExist = Object.entries(cartData).map((item) =>
+        //    foodIdSet.includes(item[0].toString()) ? Object.fromEntries(item) : ""
+        // );
+        // const filteredArray = allItemsExist.filter((item) => item !== "");
+        // console.log(filteredArray)
+        const foodIdSet = new Set(foodList.map((food) => food._id.toString()));
+
+        const allItemsExist = Object.entries(cartData)
+          .filter(([key]) => foodIdSet.has(key))
+          .reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc
+          }, {})
+
+        return res.json({success: true, message: "Successfully fetched Cart", data: allItemsExist});
     }catch(err){
         console.log(err)
         res.json({success:false, message: err})
