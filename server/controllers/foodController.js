@@ -1,6 +1,7 @@
 import path from "path"
 import { foodModel } from "../models/foodModel.js"
 import fs from "fs/promises"
+import fs2 from "fs"
 
 const addFood = async(req, res) => {
     let image_filename = `${req.file.filename}`
@@ -37,7 +38,12 @@ const removeFood = async(req, res) => {
     try{
        const __dirname = path.resolve()
        const food = await foodModel.findById(req.body.id)
-       await fs.unlink(path.join(__dirname,'uploads',food.image))
+       const filePath = path.join(__dirname, "uploads", food.image);
+       if(fs2.existsSync(filePath)){
+          await fs.unlink(filePath);
+       }else{
+        console.log("Not Exists")
+       }
        await foodModel.findByIdAndDelete(food._id);
        res.json({success: true, message: 'Food Removed successfully'})
     }catch(err){
